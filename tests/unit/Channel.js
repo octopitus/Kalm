@@ -8,7 +8,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../src/Channel');
+var testModule = require('../../lib/Channel');
 
 /* Tests ---------------------------------------------------------------------*/
 
@@ -18,8 +18,8 @@ describe('Channel', () => {
 	describe('#constructor(name, options, client)', () => {
 		it('should create a valid Channel with own timer', () => {
 
-			var testClient = { 
-				options: { 
+			var testClient = {
+				options: {
 					foo: 'bar'
 				},
 				_emit: function(){}
@@ -66,7 +66,7 @@ describe('Channel', () => {
 			expect(testChannel.packets).to.deep.equal([packet]);
 			bundlerStub.restore();
 		});
-	});	
+	});
 
 	describe('#startBundler()', () => {
 		it('should call _emit in a timeout', () => {

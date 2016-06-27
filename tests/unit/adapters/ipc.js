@@ -9,7 +9,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/adapters/ipc');
+var testModule = require('../../../lib/adapters/ipc');
 
 var net = require('net');
 var fs = require('fs');
@@ -24,7 +24,7 @@ const _path = '/tmp/app.socket-';
 
 describe('IPC', () => {
 	describe('#listen(server, callback)', () => {
-		
+
 		afterEach(() => sinon.mock.restore());
 
 		it('should bind to a defined port', (done) => {
@@ -32,8 +32,8 @@ describe('IPC', () => {
 			var netMock = sinon.mock(net);
 			var fsStub = sinon.stub(fs, 'unlink');
 			var port = 9000;
-			var serverTest = { 
-				listener: null, 
+			var serverTest = {
+				listener: null,
 				handleError: function(){},
 				handleRequest: function(){},
 				options: {
@@ -61,7 +61,7 @@ describe('IPC', () => {
 			listenerTest.expects('listen')
 				.once()
 				.withArgs('/tmp/app.socket-9000');
-			
+
 			testModule.listen(serverTest);
 
 			expect(serverTest.listener).to.be.not.null;
@@ -84,7 +84,7 @@ describe('IPC', () => {
 			};
 
 			testModule.stop(testServer);
-			
+
 			expect(serverClose.calledOnce).to.be.true;
 			clientStub.restore();
 			done();
@@ -151,7 +151,7 @@ describe('IPC', () => {
 				.once();
 
 			testModule.disconnect(clientMock.object);
-			
+
 			setTimeout(() => {
 				clientMock.verify();
 				done();

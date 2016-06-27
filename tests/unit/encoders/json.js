@@ -1,5 +1,5 @@
 /**
- * JSON Encoder 
+ * JSON Encoder
  * @module encoders/json
  */
 
@@ -9,7 +9,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/encoders/json');
+var testModule = require('../../../lib/encoders/json');
 
 /* Tests ---------------------------------------------------------------------*/
 
@@ -29,7 +29,7 @@ function wrap(data) {
 describe('JSON Encoder', () => {
 	describe('#encode(payload)', () => {
 		Object.keys(tests).forEach((test) => {
-			it('should encode ' + test, () => {	
+			it('should encode ' + test, () => {
 				tests[test].forEach((payload) => {
 					expect(testModule.encode(wrap(payload))).to.be.instanceof(Buffer);
 				});
@@ -39,7 +39,7 @@ describe('JSON Encoder', () => {
 
 	describe('#decode(payload)', () => {
 		Object.keys(tests).forEach((test) => {
-			it('should decode ' + test, () => {	
+			it('should decode ' + test, () => {
 				tests[test].forEach((payload) => {
 					var buffer = testModule.encode(wrap(payload));
 					var result = testModule.decode(buffer);

@@ -8,10 +8,10 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../src/Server');
-var defaults = require('../../src/defaults');
-var adapters = require('../../src/adapters');
-var Client = require('../../src/Client');
+var testModule = require('../../lib/Server');
+var defaults = require('../../lib/defaults');
+var adapters = require('../../lib/adapters');
+var Client = require('../../lib/Client');
 
 const EventEmitter = require('events').EventEmitter;
 
@@ -93,7 +93,7 @@ describe('Server', () => {
 	describe('#dump()', () => {
 		it('should dump a map of all the open sockets and pending payloads', () => {
 			testServer = new testModule();
-			var testSocket = { 
+			var testSocket = {
 				on: function() {},
 				setTimeout: function() {},
 				end: function() {},
@@ -119,7 +119,7 @@ describe('Server', () => {
       			splitBatches: true
       		},
 					channels: {
-						test: ['test'] 
+						test: ['test']
 					},
 					encoder: 'json',
 					hostname: '0.0.0.0',
@@ -135,7 +135,7 @@ describe('Server', () => {
 	describe('#broadcast(channel, payload)', () => {
 		it('should call send on all connections', () => {
 			testServer = new testModule();
-			var testSocket = { 
+			var testSocket = {
 				on: function() {},
 				setTimeout: function() {},
 				end: function() {},
@@ -157,7 +157,7 @@ describe('Server', () => {
 	describe('#whisper(channel, payload)', () => {
 		it('should call send on all connections that have the specified channel', () => {
 			testServer = new testModule();
-			var testSocket = { 
+			var testSocket = {
 				on: function() {},
 				setTimeout: function() {},
 				end: function() {},
@@ -181,10 +181,10 @@ describe('Server', () => {
 			testServer = new testModule();
 			var adapterTest = sinon.mock(adapters.resolve(testServer.options.adapter));
 			testServer.stop(() => {
-				testServer.listener = { 
+				testServer.listener = {
 					close: function(cb) {
-						cb(); 
-					} 
+						cb();
+					}
 				};
 
 				testServer.stop(() => {
@@ -199,7 +199,7 @@ describe('Server', () => {
 	describe('#handleError(err)', () => {
 		it('should print and dispatch the error', (done) => {
 			testServer = new testModule();
-			testServer.on('error', (e) => { 
+			testServer.on('error', (e) => {
 				done();
 			});
 			testServer.handleError('testError');
@@ -208,7 +208,7 @@ describe('Server', () => {
 
 	describe('#handleRequest(socket)', () => {
 		it('should push the new connection and dispatch connection events', (done) => {
-			var testSocket = { 
+			var testSocket = {
 				on: function() {},
 				setTimeout: function() {},
 				end: function() {},

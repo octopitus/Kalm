@@ -1,5 +1,5 @@
 /**
- * Encoders 
+ * Encoders
  */
 
 'use strict';
@@ -8,7 +8,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/encoders');
+var testModule = require('../../../lib/encoders');
 
 /* Tests ---------------------------------------------------------------------*/
 

@@ -1,5 +1,5 @@
 /**
- * Adapters 
+ * Adapters
  */
 
 'use strict';
@@ -8,7 +8,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/adapters');
+var testModule = require('../../../lib/adapters');
 
 /* Tests ---------------------------------------------------------------------*/
 

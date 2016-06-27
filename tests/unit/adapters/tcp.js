@@ -9,7 +9,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/adapters/tcp');
+var testModule = require('../../../lib/adapters/tcp');
 
 var net = require('net');
 
@@ -26,8 +26,8 @@ describe('TCP', () => {
 
 			var netMock = sinon.mock(net);
 			var port = 9000;
-			var serverTest = { 
-				listener: null, 
+			var serverTest = {
+				listener: null,
 				handleError: function(){},
 				handleRequest: function(){},
 				options: {
@@ -52,7 +52,7 @@ describe('TCP', () => {
 			listenerTest.expects('listen')
 				.once()
 				.withArgs(port);
-			
+
 			testModule.listen(serverTest);
 
 			expect(serverTest.listener).to.be.not.null;
@@ -74,7 +74,7 @@ describe('TCP', () => {
 			};
 
 			testModule.stop(testServer);
-			
+
 			expect(serverClose.calledOnce).to.be.true;
 			clientStub.restore();
 			done();
@@ -141,7 +141,7 @@ describe('TCP', () => {
 				.once();
 
 			testModule.disconnect(clientMock.object);
-			
+
 			setTimeout(() => {
 				clientMock.verify();
 				done();

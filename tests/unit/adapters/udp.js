@@ -9,7 +9,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../../src/adapters/udp');
+var testModule = require('../../../lib/adapters/udp');
 
 var dgram = require('dgram');
 
@@ -19,13 +19,13 @@ describe('UDP', () => {
 	describe('#listen(server, callback)', () => {
 
 		afterEach(() => sinon.mock.restore());
-		
+
 		it('should bind to a defined port', (done) => {
 
 			var dgramMock = sinon.mock(dgram);
 			var port = 9000;
-			var serverTest = { 
-				listener: null, 
+			var serverTest = {
+				listener: null,
 				handleError: function(){},
 				options: {
 					port: port
@@ -50,7 +50,7 @@ describe('UDP', () => {
 			listenerTest.expects('bind')
 				.once()
 				.withArgs(port, '0.0.0.0');
-			
+
 			testModule.listen(serverTest, () => {
 				expect(serverTest.listener).to.be.not.null;
 				listenerTest.verify();
@@ -152,7 +152,7 @@ describe('UDP', () => {
 				.once();
 
 			testModule.disconnect(clientMock.object);
-			
+
 			setTimeout(() => {
 				clientMock.verify();
 				done();

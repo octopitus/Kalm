@@ -8,10 +8,10 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../src/Client');
-var Channel = require('../../src/Channel');
-var defaults = require('../../src/defaults');
-var adapters = require('../../src/adapters');
+var testModule = require('../../lib/Client');
+var Channel = require('../../lib/Channel');
+var defaults = require('../../lib/defaults');
+var adapters = require('../../lib/adapters');
 
 const EventEmitter = require('events').EventEmitter;
 
@@ -19,7 +19,7 @@ const EventEmitter = require('events').EventEmitter;
 
 describe('Client', () => {
 
-	var testSocket = { 
+	var testSocket = {
 		on: function() {},
 		setTimeout: function() {},
 		end: function() {},
@@ -207,7 +207,7 @@ describe('Client', () => {
 				expect(testClient.socket).to.be.null;
 				done();
 			});
-			
+
 			testClient.destroy();
 		});
 	});

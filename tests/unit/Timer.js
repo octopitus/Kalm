@@ -8,7 +8,7 @@
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var testModule = require('../../src/Timer');
+var testModule = require('../../lib/Timer');
 
 /* Tests ---------------------------------------------------------------------*/
 
